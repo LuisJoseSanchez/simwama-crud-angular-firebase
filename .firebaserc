@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "simwama-83902": {
+      "hosting": {
+        "simwama": [
+          "simwama-83902"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "simwama-83902"
+  }
+}

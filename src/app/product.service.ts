@@ -21,7 +21,8 @@ export class ProductService {
   }
 
   public getProducts(): Observable<Product[]> {
-    return collectionData(collection(this.firestore, 'products'), {idField: 'productId'}) as Observable<Product[]>;
+    const collectionRef = collection(this.firestore, 'products');
+    return collectionData(collectionRef, {idField: 'productId'}) as Observable<Product[]>;
   }
 
   async deleteProduct(id: string) {

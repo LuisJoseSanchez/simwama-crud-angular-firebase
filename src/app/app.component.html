@@ -1,6 +1,8 @@
 <h1>SIMWAMA</h1>
 
-<form [formGroup]="productForm" (ngSubmit)="addProduct()">
+<form
+  [formGroup]="productForm"
+  (ngSubmit)="formButtonText === 'Add product' ? addProduct() : updateProductStep2()">
 
   <label for="description">Description: </label>
   <input id="description" type="text" formControlName="description">
@@ -27,7 +29,13 @@
 
   <br>
 
-  <button type="submit">Add product</button>
+  <button type="submit">{{ formButtonText }}</button>&nbsp;
+  
+  <button
+    *ngIf="formButtonText === 'Update product'"
+    (click)="cancel()">
+      Cancel
+  </button>
 
 </form>
 
@@ -52,12 +60,21 @@
       <td>{{ p.purchasePrice }}</td>
       <td>{{ p.salePrice }}</td>
       <td>{{ p.stock }}</td>
-      <td><button (click)="productService.deleteProduct(p.productId)" title="delete product">X</button></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>
+      <td>
+        <button
+          (click)="updateProductStep1(p.productId)"
+          title="update product">
+          update
+        </button>
+      </td>
+      <td>
+        <button
+          (click)="productService.deleteProduct(p.productId)"
+          title="delete product">
+          X
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>

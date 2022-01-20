@@ -11,6 +11,8 @@ import { ProductService } from './product.service';
 })
 export class AppComponent {
 
+  formButtonText: string = "Add product";
+
   products: Observable<Product[]>;
 
   productForm = new FormGroup({
@@ -28,5 +30,20 @@ export class AppComponent {
   addProduct() {
     this.productService.addProduct(this.productForm.value);
     this.productForm.reset();
+  }
+
+  updateProductStep1(id: string) {
+    this.productForm.value = this.productService.getProduct(id);
+    this.formButtonText = "Update product";
+  }
+
+  updateProductStep2() {
+    this.productService.updateProduct(this.productForm.value);
+    this.productForm.reset();
+  }
+
+  cancel() {
+    this.productForm.reset();
+    this.formButtonText = "Add product";
   }
 }

@@ -27,7 +27,7 @@ export class ProductService {
 
   getProduct(id: string): Observable<Product> {
     const docRef = doc(this.firestore, `products/${id}`);
-    return docData(docRef, { idField: 'id' }) as Observable<Product>;
+    return docData(docRef, { idField: 'productId' }) as Observable<Product>;
   }
 
   async deleteProduct(id: string) {

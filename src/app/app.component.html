@@ -2,7 +2,7 @@
 
 <form
   [formGroup]="productForm"
-  (ngSubmit)="formButtonText === 'Add product' ? addProduct() : updateProductStep2()">
+  (ngSubmit)="formSubmit()">
 
   <label for="description">Description: </label>
   <input id="description" type="text" formControlName="description">

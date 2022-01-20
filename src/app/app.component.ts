@@ -29,24 +29,23 @@ export class AppComponent {
   }
 
   addProduct() {
-    console.log("addProduct");
     this.productService.addProduct(this.productForm.value);
     this.productForm.reset();
   }
 
   updateProductStep1(id: string) {
     this.productService.getProduct(id).subscribe(
-      data => {this.productForm.patchValue(data); console.log(data);}
+      data => this.productForm.patchValue(data)
     );
     
     this.formButtonText = "Update product";
   }
 
   updateProductStep2() {
-    console.log("updateProduct");
     this.productService.updateProduct(this.productForm.value);
-    this.productForm.patchValue({description: "hola"})
-    // this.productForm.reset();
+
+    setTimeout(() => this.productForm.reset(), 500);
+    
     this.formButtonText = "Add product";
   }
 
@@ -54,4 +53,13 @@ export class AppComponent {
     this.productForm.reset();
     this.formButtonText = "Add product";
   }
+
+  formSubmit() {
+    if (this.formButtonText === 'Add product') {
+      this.addProduct();
+    } else {
+      this.updateProductStep2();
+    }
+  }
+  
 }

@@ -11,7 +11,7 @@ export class ProductService {
 
   constructor(private firestore: Firestore) { }
 
-  public async addProduct(product: Product) {
+  async addProduct(product: Product) {
     try {
       const docRef = await addDoc(collection(this.firestore, "products"), product);
       console.log("Document written with ID: ", docRef.id);

@@ -1,5 +1,35 @@
 <h1>SIMWAMA</h1>
 
+
+<!-- Modal window to add or update a product -->
+
+<p-dialog [(visible)]="displayProductForm" [style]="{width: '40vw'}">
+  <ng-template pTemplate="header">
+    Product
+  </ng-template>
+
+ TODO ESTO ESTÁ POR HACER
+
+  <p-footer>
+    <p-button
+      (click)="displayProductForm=false"
+      label="Cancel"
+      styleClass="p-button-text">
+    </p-button>
+    <p-button
+    *ngIf="formButtonText === 'Update product'"
+    (click)="cancel()" [label]="formButtonText" styleClass="p-button-text"></p-button>
+  </p-footer>
+</p-dialog>
+
+
+
+
+
+
+
+
+
 <form
   [formGroup]="productForm"
   (ngSubmit)="formSubmit()">
@@ -43,8 +73,10 @@
 
 <hr>
 
-<table>
-  <thead>
+<!-- Product list -->
+
+<p-table [value]="(products | async)!" [paginator]="true" [rows]="10">
+  <ng-template pTemplate="header">
     <tr>
       <th></th>
       <th>Description</th>
@@ -52,29 +84,40 @@
       <th>Sale price</th>
       <th>Stock</th>
     </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let p of products | async">
+  </ng-template>
+  <ng-template pTemplate="body" let-p>
+    <tr>
       <td><img [src]="p.picture" width="60px"></td>
       <td>{{ p.description }}</td>
       <td>{{ p.purchasePrice }}</td>
       <td>{{ p.salePrice }}</td>
       <td>{{ p.stock }}</td>
       <td>
-      <td>
         <button
+          pButton
+          type="button"
+          icon="pi pi-pencil"
+          class="p-button-rounded"
           (click)="updateProductStep1(p.productId)"
           title="update product">
-          update
         </button>
       </td>
       <td>
         <button
+          pButton
+          type="button"
+          icon="pi pi-trash"
+          class="p-button-rounded"
           (click)="productService.deleteProduct(p.productId)"
           title="delete product">
-          X
         </button>
       </td>
     </tr>
-  </tbody>
-</table>
+  </ng-template>
+</p-table>
+
+<!-- Add product button -->
+
+<button pButton type="button" class="p-button-rounded p-button-success">
+  <i class="add-product-icon pi pi-plus"></i>
+</button>

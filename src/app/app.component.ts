@@ -24,6 +24,10 @@ export class AppComponent {
     picture: new FormControl('')
   });
 
+
+  // ¡¡¡OJO, AÑADIR ESTA LÍNEA AL LIBRO!!!
+  displayProductForm = true;
+
   constructor(public productService: ProductService) {
     this.products = productService.getProducts();
   }

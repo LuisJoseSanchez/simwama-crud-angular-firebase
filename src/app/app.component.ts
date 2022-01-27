@@ -26,6 +26,10 @@ export class AppComponent {
 
   displayProductForm = false;
 
+  displayConfirmDelete = false;
+  idForDeletion = '';
+  descriptionForDeletion = '';
+
   constructor(public productService: ProductService) {
     this.products = productService.getProducts();
   }
@@ -66,6 +70,17 @@ export class AppComponent {
       this.updateProductStep2();
     }
     this.displayProductForm = false;
+  }
+
+  confirmDeleteProduct(product: Product) {
+    this.idForDeletion = product.productId;
+    this.descriptionForDeletion = product.description;
+    this.displayConfirmDelete = true;
+  }
+
+  deleteProduct() {
+    this.productService.deleteProduct(this.idForDeletion);
+    this.displayConfirmDelete = false;
   }
   
 }

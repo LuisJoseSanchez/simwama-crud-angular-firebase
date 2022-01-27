@@ -1,56 +1,57 @@
-<h1>SIMWAMA</h1>
+<p-panel header="SIMWAMA">
+  
+  <!-- Product list -->
 
-{{ productForm.value | json }}
+  <p-table [value]="(products | async)!" [paginator]="true" [rows]="10">
+    <ng-template pTemplate="header">
+      <tr>
+        <th></th>
+        <th>Description</th>
+        <th>Purchase price</th>
+        <th>Sale price</th>
+        <th>Stock</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-p>
+      <tr>
+        <td><img [src]="p.picture" width="60px"></td>
+        <td>{{ p.description }}</td>
+        <td>{{ p.purchasePrice }}</td>
+        <td>{{ p.salePrice }}</td>
+        <td>{{ p.stock }}</td>
+        <td>
+          <button
+            pButton
+            type="button"
+            icon="pi pi-pencil"
+            class="p-button-rounded"
+            (click)="updateProductStep1(p.productId)"
+            title="update product">
+          </button>
+        </td>
+        <td>
+          <button
+            pButton
+            type="button"
+            icon="pi pi-trash"
+            class="p-button-rounded"
+            (click)="confirmDeleteProduct(p)"
+            title="delete product">
+          </button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-panel>
 
-<hr>
-
-<!-- Product list -->
-
-<p-table [value]="(products | async)!" [paginator]="true" [rows]="10">
-  <ng-template pTemplate="header">
-    <tr>
-      <th></th>
-      <th>Description</th>
-      <th>Purchase price</th>
-      <th>Sale price</th>
-      <th>Stock</th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-p>
-    <tr>
-      <td><img [src]="p.picture" width="60px"></td>
-      <td>{{ p.description }}</td>
-      <td>{{ p.purchasePrice }}</td>
-      <td>{{ p.salePrice }}</td>
-      <td>{{ p.stock }}</td>
-      <td>
-        <button
-          pButton
-          type="button"
-          icon="pi pi-pencil"
-          class="p-button-rounded"
-          (click)="updateProductStep1(p.productId)"
-          title="update product">
-        </button>
-      </td>
-      <td>
-        <button
-          pButton
-          type="button"
-          icon="pi pi-trash"
-          class="p-button-rounded"
-          (click)="productService.deleteProduct(p.productId)"
-          title="delete product">
-        </button>
-      </td>
-    </tr>
-  </ng-template>
-</p-table>
 
 <!-- Floating button for adding a product -->
 
 <div class="add-button">
-  <p-speedDial (click)="displayProductForm = true"></p-speedDial>
+  <p-speedDial
+    (click)="displayProductForm = true"
+    buttonClassName="p-button-warning">
+  </p-speedDial>
 </div>
 
 <!-- Modal window to add or update a product -->
@@ -61,34 +62,61 @@
     [formGroup]="productForm"
     (ngSubmit)="formSubmit()">
 
-    <ng-template pTemplate="header">
-      Product
-    </ng-template>
+    <div class="card">
 
-    <label for="description">Description: </label>
-    <input pInputText id="description" type="text" formControlName="description">
+      <div class="field">
+        <label for="description">Description: </label>
+        <input
+          pInputText
+          id="description"
+          type="text"
+          formControlName="description"
+          class="inputfield w-full">
+      </div>
 
-    <br><br>
+      <div class="field">
+        <label for="purchasePrice">Purchase price: </label>
+        <input
+          pInputNumber
+          id="purchasePrice"
+          type="number"
+          formControlName="purchasePrice"
+          class="inputfield w-full">
+      </div>
 
-    <label for="purchasePrice">Purchase price: </label>
-    <input pInputNumber id="purchasePrice" type="number" formControlName="purchasePrice">
+      <div class="field">
+        <label for="salePrice">Sale price: </label>
+        <input
+          pInputNumber
+          id="salePrice"
+          type="number"
+          formControlName="salePrice"
+          class="inputfield w-full">
+      </div>
 
-    <br><br>
+      <div class="field">
+        <label for="stock">Stock: </label>
+        <input
+          pInputNumber
+          id="stock"
+          type="number"
+          formControlName="stock"
+          class="inputfield w-full">
+      </div>
 
-    <label for="salePrice">Sale price: </label>
-    <input pInputNumber id="salePrice" type="number" formControlName="salePrice">
+      <div class="field">
+        <label for="picture">Picture: </label>
+        <input
+          pInputText
+          id="picture"
+          type="text"
+          formControlName="picture"
+          class="inputfield w-full">
+      </div>
 
-    <br><br>
+    </div>
 
-    <label for="stock">Stock: </label>
-    <input pInputNumber id="stock" type="number" formControlName="stock">
-
-    <br><br>
-
-    <label for="picture">Picture: </label>
-    <input pInputText id="picture" type="text" formControlName="picture">
-
-    <br><br>
+    <br>
 
     <p-footer>
       <p-button
@@ -108,6 +136,30 @@
 
 </form>
 
+</p-dialog>
+
+
+<!-- Modal window to confirm deletion -->
+
+<p-dialog [(visible)]="displayConfirmDelete">
+
+  <div class="card">
+    Are you sure you want to delete product {{ descriptionForDeletion }}?
+  </div>
+
+  <p-footer>
+    <p-button
+      (click)="deleteProduct()"
+      label="Yes">
+    </p-button>
+
+    &nbsp;
+
+    <p-button
+      (click)="displayConfirmDelete = false"
+      label="No">
+    </p-button>
+  </p-footer>
 </p-dialog>
 
 <!--

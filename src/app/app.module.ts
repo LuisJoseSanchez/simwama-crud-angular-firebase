@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
+import { PanelModule } from 'primeng/panel';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { TableModule } from 'primeng/table';
 
@@ -32,6 +33,7 @@ import { TableModule } from 'primeng/table';
     ReactiveFormsModule,
     ButtonModule,
     DialogModule,
+    PanelModule,
     SpeedDialModule,
     TableModule
   ],

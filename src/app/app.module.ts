@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
+import { SpeedDialModule } from 'primeng/speeddial';
 import { TableModule } from 'primeng/table';
 
 @NgModule({
@@ -31,6 +32,7 @@ import { TableModule } from 'primeng/table';
     ReactiveFormsModule,
     ButtonModule,
     DialogModule,
+    SpeedDialModule,
     TableModule
   ],
   providers: [],

@@ -24,9 +24,7 @@ export class AppComponent {
     picture: new FormControl('')
   });
 
-
-  // ¡¡¡OJO, AÑADIR ESTA LÍNEA AL LIBRO!!!
-  displayProductForm = true;
+  displayProductForm = false;
 
   constructor(public productService: ProductService) {
     this.products = productService.getProducts();
@@ -38,6 +36,8 @@ export class AppComponent {
   }
 
   updateProductStep1(id: string) {
+    this.displayProductForm = true;
+
     this.productService.getProduct(id).subscribe(
       data => this.productForm.patchValue(data)
     );
@@ -56,6 +56,7 @@ export class AppComponent {
   cancel() {
     this.productForm.reset();
     this.formButtonText = "Add product";
+    this.displayProductForm = false;
   }
 
   formSubmit() {
@@ -64,6 +65,7 @@ export class AppComponent {
     } else {
       this.updateProductStep2();
     }
+    this.displayProductForm = false;
   }
   
 }

@@ -1,74 +1,5 @@
 <h1>SIMWAMA</h1>
 
-
-<!-- Modal window to add or update a product -->
-
-<p-dialog [(visible)]="displayProductForm" [style]="{width: '40vw'}">
-  <ng-template pTemplate="header">
-    Product
-  </ng-template>
-
- TODO ESTO ESTÁ POR HACER
-
-  <p-footer>
-    <p-button
-      (click)="displayProductForm=false"
-      label="Cancel"
-      styleClass="p-button-text">
-    </p-button>
-    <p-button
-    *ngIf="formButtonText === 'Update product'"
-    (click)="cancel()" [label]="formButtonText" styleClass="p-button-text"></p-button>
-  </p-footer>
-</p-dialog>
-
-
-
-
-
-
-
-
-
-<form
-  [formGroup]="productForm"
-  (ngSubmit)="formSubmit()">
-
-  <label for="description">Description: </label>
-  <input id="description" type="text" formControlName="description">
-
-  <br>
-
-  <label for="purchasePrice">Purchase price: </label>
-  <input id="purchasePrice" type="number" formControlName="purchasePrice">
-
-  <br>
-
-  <label for="salePrice">Sale price: </label>
-  <input id="salePrice" type="number" formControlName="salePrice">
-
-  <br>
-
-  <label for="stock">Stock: </label>
-  <input id="stock" type="number" formControlName="stock">
-
-  <br>
-
-  <label for="picture">Picture: </label>
-  <input id="picture" type="text" formControlName="picture">
-
-  <br>
-
-  <button type="submit">{{ formButtonText }}</button>&nbsp;
-  
-  <button
-    *ngIf="formButtonText === 'Update product'"
-    (click)="cancel()">
-      Cancel
-  </button>
-
-</form>
-
 {{ productForm.value | json }}
 
 <hr>
@@ -116,8 +47,72 @@
   </ng-template>
 </p-table>
 
-<!-- Add product button -->
+<!-- Floating button for adding a product -->
 
-<button pButton type="button" class="p-button-rounded p-button-success">
-  <i class="add-product-icon pi pi-plus"></i>
-</button>
+<div class="add-button">
+  <p-speedDial (click)="displayProductForm = true"></p-speedDial>
+</div>
+
+<!-- Modal window to add or update a product -->
+
+<p-dialog [(visible)]="displayProductForm">
+
+  <form
+    [formGroup]="productForm"
+    (ngSubmit)="formSubmit()">
+
+    <ng-template pTemplate="header">
+      Product
+    </ng-template>
+
+    <label for="description">Description: </label>
+    <input pInputText id="description" type="text" formControlName="description">
+
+    <br><br>
+
+    <label for="purchasePrice">Purchase price: </label>
+    <input pInputNumber id="purchasePrice" type="number" formControlName="purchasePrice">
+
+    <br><br>
+
+    <label for="salePrice">Sale price: </label>
+    <input pInputNumber id="salePrice" type="number" formControlName="salePrice">
+
+    <br><br>
+
+    <label for="stock">Stock: </label>
+    <input pInputNumber id="stock" type="number" formControlName="stock">
+
+    <br><br>
+
+    <label for="picture">Picture: </label>
+    <input pInputText id="picture" type="text" formControlName="picture">
+
+    <br><br>
+
+    <p-footer>
+      <p-button
+        type="submit"
+        [label]="formButtonText"
+        styleClass="p-button-success">
+      </p-button>
+
+      &nbsp;
+
+      <p-button
+        (click)="cancel()"
+        label="Cancel"
+        styleClass="p-button-danger">
+      </p-button>
+    </p-footer>
+
+</form>
+
+</p-dialog>
+
+<!--
+<p-button
+*ngIf="formButtonText === 'Update product'"
+(click)="cancel()" [label]="formButtonText" styleClass="p-button-text">
+</p-button>
+-->

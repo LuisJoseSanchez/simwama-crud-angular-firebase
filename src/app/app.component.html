@@ -1,5 +1,5 @@
 <p-panel header="SIMWAMA">
-  
+
   <!-- Product list -->
 
   <p-table [value]="(products | async)!" [paginator]="true" [rows]="10">
@@ -161,10 +161,3 @@
     </p-button>
   </p-footer>
 </p-dialog>
-
-<!--
-<p-button
-*ngIf="formButtonText === 'Update product'"
-(click)="cancel()" [label]="formButtonText" styleClass="p-button-text">
-</p-button>
--->

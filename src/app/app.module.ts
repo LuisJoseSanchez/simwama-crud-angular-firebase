@@ -18,11 +18,13 @@ import { PanelModule } from 'primeng/panel';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { TableModule } from 'primeng/table';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,

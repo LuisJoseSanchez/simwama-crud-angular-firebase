@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPageComponent implements OnInit {
 
+  displayRegister = false;
+  displayLogin = false;
+
   constructor() { }
 
   ngOnInit(): void {

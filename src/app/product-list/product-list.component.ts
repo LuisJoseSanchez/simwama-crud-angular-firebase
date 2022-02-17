@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { AuthService } from '../auth.service';
 import { Product } from '../product';
 import { ProductService } from '../product.service';
 
@@ -30,7 +31,10 @@ export class ProductListComponent implements OnInit {
   idForDeletion = '';
   descriptionForDeletion = '';
   
-  constructor(public productService: ProductService) {
+  constructor(
+    public productService: ProductService,
+    public authService: AuthService
+  ) {
     this.products = productService.getProducts();
   }
 

@@ -20,13 +20,15 @@ import { TableModule } from 'primeng/table';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { ProductListComponent } from './product-list/product-list.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
     UserListComponent,
-    ProductListComponent
+    ProductListComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

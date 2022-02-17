@@ -1,0 +1,69 @@
+<p-dialog
+  [(visible)]="displayLoginDialog"
+  (onHide)="cancel()">
+
+  <ng-template pTemplate="header">
+    Login
+  </ng-template>
+  
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="formSubmit()">
+
+    <div class="card">
+
+      <div class="field">
+        <label for="email">Email: </label>
+        <input
+          pInputText
+          id="email"
+          type="email"
+          formControlName="email"
+          class="inputfield w-full">
+      </div>
+
+      <div class="field">
+        <label for="password">Password: </label>
+        <input
+          pInputNumber
+          id="password"
+          type="password"
+          formControlName="password"
+          class="inputfield w-full">
+      </div>
+
+    </div>
+
+    <br>
+
+    <p-footer>
+      <p-button
+        type="submit"
+        label="Ok"
+        styleClass="p-button-success">
+      </p-button>
+
+      &nbsp;
+
+      <p-button
+        (click)="cancel()"
+        label="Cancel"
+        styleClass="p-button-danger">
+      </p-button>
+    </p-footer>
+
+</form>
+
+<hr>
+
+<button
+  pButton
+  (click)="loginWithGoogle()"
+  type="button"
+  label="Sign in with Google"
+  icon="pi pi-google"
+  class="p-button-lg google-button">
+</button>
+
+
+</p-dialog>

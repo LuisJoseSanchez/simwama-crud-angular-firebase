@@ -21,6 +21,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     LandingPageComponent,
     UserListComponent,
     ProductListComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LoginDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -22,6 +22,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
+import { RegisterDialogComponent } from './register-dialog/register-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { LoginDialogComponent } from './login-dialog/login-dialog.component';
     UserListComponent,
     ProductListComponent,
     PageNotFoundComponent,
-    LoginDialogComponent
+    LoginDialogComponent,
+    RegisterDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -18,6 +18,8 @@ export class LoginDialogComponent implements OnInit {
     password: new FormControl('')
   });
 
+  errorMessage = '';
+
   constructor(
     private authService: AuthService,
     private router: Router
@@ -30,7 +32,15 @@ export class LoginDialogComponent implements OnInit {
     this.displayLoginDialogChange.emit(false);
   }
   
-  formSubmit() {}
+  formSubmit() {
+    const email = this.loginForm.value.email;
+    const password = this.loginForm.value.password;
+
+    this.authService
+      .loginWithEmailAndPassword(email, password)
+      .then(() => this.router.navigateByUrl('/product-list'))
+      .catch((e) => this.errorMessage = e.message);
+  }
 
   loginWithGoogle() {
     this.authService

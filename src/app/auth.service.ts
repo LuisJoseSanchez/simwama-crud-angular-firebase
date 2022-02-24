@@ -19,24 +19,14 @@ export class AuthService {
 
   constructor(private auth: Auth) { }
 
-  login(email: string, password: string): Promise<boolean> {
-    return signInWithEmailAndPassword(this.auth, email, password)
-      .then(
-        () => {
-          return true;
-        },
-        error => {
-          console.error(error);
-          return false;
-        }
-      );
+  loginWithEmailAndPassword(email: string, password: string): Promise<UserCredential> {
+    return signInWithEmailAndPassword(this.auth, email, password);
   }
 
-
-  loginWithGoogle() {
+  loginWithGoogle(): Promise<UserCredential> {
     return signInWithPopup(this.auth, new GoogleAuthProvider());
   }
-  
+
   getCurrentUser(): User | null {
     return getAuth().currentUser;
   }
